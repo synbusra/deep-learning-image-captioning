@@ -2,15 +2,33 @@
 
 
 
-\# Derin Öğrenme Tabanlı Görsel Açıklama Üretimi
+<h1>Derin Öğrenme Tabanlı Görsel Açıklama Üretimi</h1>
 
 
 
-\### Flickr30k Veri Seti ile ResNet50 + LSTM Tabanlı Image Captioning Projesi
+<p>
+
+&#x20; <b>Flickr30K veri seti üzerinde ResNet50 özellik çıkarımı ve LSTM tabanlı Image Captioning modeli</b>
+
+</p>
 
 
 
-Bu proje kapsamında, görsellerden otomatik açıklama üretebilen derin öğrenme tabanlı bir model geliştirilmiştir. Görsel özellik çıkarımı için ResNet50, açıklama üretimi için LSTM tabanlı model mimarisi kullanılmıştır.
+<p>
+
+&#x20; <b>ResNet50</b> • <b>LSTM</b> • <b>Beam Search</b> • <b>BLEU Değerlendirmesi</b>
+
+</p>
+
+
+
+<p>
+
+Bu proje kapsamında, görsellerden otomatik açıklama üretebilen derin öğrenme tabanlı bir model geliştirilmiştir.
+
+Görsel özellik çıkarımı için ResNet50, açıklama üretimi için LSTM tabanlı model mimarisi kullanılmıştır.
+
+</p>
 
 
 
@@ -18,9 +36,9 @@ Bu proje kapsamında, görsellerden otomatik açıklama üretebilen derin öğre
 
 
 
+
+
 \---
-
-
 
 \## Proje Hakkında
 
