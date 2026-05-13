@@ -6,11 +6,11 @@
 
 
 
-\### Flickr30k veri seti üzerinde ResNet50 + LSTM tabanlı Image Captioning Projesi
+\### Flickr30k Veri Seti ile ResNet50 + LSTM Tabanlı Image Captioning Projesi
 
 
 
-Bu projede, görsellerden otomatik metin açıklaması üretmek amacıyla derin öğrenme tabanlı bir image captioning modeli geliştirilmiştir. Görsel özellik çıkarımı için ResNet50, açıklama üretimi için LSTM tabanlı bir model kullanılmıştır.
+Bu proje kapsamında, görsellerden otomatik açıklama üretebilen derin öğrenme tabanlı bir model geliştirilmiştir. Görsel özellik çıkarımı için ResNet50, açıklama üretimi için LSTM tabanlı model mimarisi kullanılmıştır.
 
 
 
@@ -22,33 +22,43 @@ Bu projede, görsellerden otomatik metin açıklaması üretmek amacıyla derin 
 
 
 
-\## Proje Özeti
+\## Proje Hakkında
 
 
 
-Bu çalışmada bir görüntünün içeriğini analiz ederek doğal dilde açıklama üretebilen bir model geliştirilmiştir. Model, Flickr30k veri setindeki görseller ve bu görsellere ait açıklama cümleleri kullanılarak eğitilmiştir.
+Bu çalışmada amaç, bir görselin içeriğini analiz ederek bu görsele uygun doğal dilde açıklama üretebilen bir image captioning modeli geliştirmektir.
 
 
 
-Projede temel olarak:
+Model, Flickr30k veri setindeki görseller ve bu görsellere ait açıklama cümleleri kullanılarak eğitilmiştir. Görsel tarafta ResNet50 ile özellik çıkarımı yapılmış, metin tarafında ise caption verileri temizlenerek tokenizer ile sayısal dizilere dönüştürülmüştür.
 
 
 
-| Aşama | Kullanılan Yöntem |
+\---
+
+
+
+\## Kullanılan Yöntemler
+
+
+
+| Aşama | Açıklama |
 
 |---|---|
 
-| Görsel özellik çıkarımı | ResNet50 |
+| Veri Seti | Flickr30k |
 
-| Metin ön işleme | Tokenizer, startseq/endseq etiketleri |
+| Görsel Özellik Çıkarımı | ResNet50 |
 
-| Model mimarisi | CNN + LSTM |
+| Metin Ön İşleme | Temizleme, tokenization, startseq/endseq |
 
-| Tahmin üretimi | Beam Search |
+| Model Mimarisi | CNN + LSTM |
 
-| Değerlendirme | BLEU-1, BLEU-2, BLEU-3, BLEU-4 |
+| Tahmin Üretimi | Beam Search |
 
-| Model kaydı | ModelCheckpoint |
+| Değerlendirme | BLEU metrikleri |
+
+| Model Kaydı | ModelCheckpoint ile en iyi model seçimi |
 
 
 
@@ -56,103 +66,81 @@ Projede temel olarak:
 
 
 
-\## Kullanılan Teknolojiler
+\## Proje Akışı
 
 
 
-| Teknoloji | Amaç |
+<table>
+
+<tr>
+
+<td align="center"><b>1</b><br>Veri Seti</td>
+
+<td align="center">➡️</td>
+
+<td align="center"><b>2</b><br>ResNet50 Özellik Çıkarımı</td>
+
+<td align="center">➡️</td>
+
+<td align="center"><b>3</b><br>Metin Ön İşleme</td>
+
+</tr>
+
+<tr>
+
+<td align="center"><b>4</b><br>Tokenizer</td>
+
+<td align="center">➡️</td>
+
+<td align="center"><b>5</b><br>CNN + LSTM Modeli</td>
+
+<td align="center">➡️</td>
+
+<td align="center"><b>6</b><br>Beam Search + BLEU</td>
+
+</tr>
+
+</table>
+
+
+
+\---
+
+
+
+\## Notebook Bölümleri
+
+
+
+Notebook içerisinde proje aşağıdaki ana bölümlerden oluşmaktadır:
+
+
+
+| Bölüm | İçerik |
 
 |---|---|
 
-| Python | Proje geliştirme dili |
+| Kütüphaneler ve Drive Bağlantısı | Gerekli kütüphaneler ve Google Drive bağlantısı |
 
-| TensorFlow / Keras | Derin öğrenme modeli |
+| Kaggle'dan Veri Setini İndirme | Flickr30k veri setinin hazırlanması |
 
-| ResNet50 | Görsel özellik çıkarımı |
+| Dizinler ve Ayarlar | Proje klasörleri ve çıktı yolları |
 
-| LSTM | Metin dizisi üretimi |
+| ResNet50 ile Akıllı Özellik Çıkarımı | Görsellerden 2048 boyutlu özellik çıkarımı |
 
-| Flickr30k | Görsel açıklama veri seti |
+| Metin Ön İşleme ve Tokenizer | Caption temizleme ve tokenizer oluşturma |
 
-| BLEU Score | Model başarım değerlendirmesi |
+| Data Generator | Eğitim için veri üretici yapı |
 
-| Git LFS | Büyük model dosyalarının GitHub’a yüklenmesi |
+| Mimari | CNN + LSTM model yapısı |
 
+| Eğitimi Aşaması | Model eğitimi ve en iyi modelin kaydı |
 
+| Modeli Tekrar Başlatma | Kayıtlı model ve çıktıların tekrar yüklenmesi |
 
-\---
+| Beam Search Sonuçları | Açıklama üretimi ve BLEU değerlendirmesi |
 
-
-
-\## Model Akışı
-
-
-
-```mermaid
-
-flowchart LR
-
-&#x20;   A\[Görsel] --> B\[ResNet50]
-
-&#x20;   B --> C\[2048 Boyutlu Görsel Özellik]
-
-&#x20;   D\[Caption Metni] --> E\[Metin Ön İşleme]
-
-&#x20;   E --> F\[Tokenizer]
-
-&#x20;   C --> G\[CNN + LSTM Modeli]
-
-&#x20;   F --> G
-
-&#x20;   G --> H\[Caption Tahmini]
-
-&#x20;   H --> I\[Beam Search]
-
-&#x20;   I --> J\[BLEU Değerlendirmesi]
-
-```
-
-
-
-\---
-
-
-
-\## Notebook Akışı
-
-
-
-Notebook içerisinde proje aşağıdaki sırayla ilerlemektedir:
-
-
-
-1\. Kütüphaneler ve Google Drive bağlantısı
-
-2\. Flickr30k veri setinin Kaggle üzerinden indirilmesi
-
-3\. Dizin ve dosya yollarının ayarlanması
-
-4\. ResNet50 ile görsel özellik çıkarımı
-
-5\. Caption metinlerinin temizlenmesi
-
-6\. Tokenizer oluşturulması
-
-7\. Data generator yapısının hazırlanması
-
-8\. CNN + LSTM model mimarisinin oluşturulması
-
-9\. Modelin eğitilmesi
-
-10\. En iyi modelin `best\_model.keras` olarak kaydedilmesi
-
-11\. Modelin tekrar yüklenmesi
-
-12\. Beam Search ile açıklama üretimi
-
-13\. BLEU skorları ile değerlendirme
-
-14\. Örnek görseller üzerinde test
+| Görseller ile Test | Örnek görseller üzerinde tahmin üretimi |
 
 
 
@@ -164,7 +152,7 @@ Notebook içerisinde proje aşağıdaki sırayla ilerlemektedir:
 
 
 
-Model iki farklı girdiyi birlikte kullanmaktadır:
+Model iki temel girdiyi birlikte kullanmaktadır:
 
 
 
@@ -172,9 +160,9 @@ Model iki farklı girdiyi birlikte kullanmaktadır:
 
 |---|---|
 
-| Görsel özellik girdisi | ResNet50 ile çıkarılan 2048 boyutlu vektör |
+| Görsel Girdisi | ResNet50 ile çıkarılmış 2048 boyutlu özellik vektörü |
 
-| Metin girdisi | Tokenizer ile sayısallaştırılmış caption dizileri |
+| Metin Girdisi | Tokenizer ile sayısal hale getirilmiş caption dizisi |
 
 
 
@@ -210,7 +198,7 @@ Model, görsel özellikleri ve daha önce üretilmiş kelimeleri birlikte değer
 
 
 
-Eğitim sırasında `ModelCheckpoint` kullanılmıştır. Böylece doğrulama kaybı en düşük olan model otomatik olarak kaydedilmiştir.
+Eğitim sırasında ModelCheckpoint kullanılmıştır. Böylece doğrulama kaybı en düşük olan model otomatik olarak best\_model.keras dosyasına kaydedilmiştir.
 
 
 
@@ -218,15 +206,15 @@ Eğitim sırasında `ModelCheckpoint` kullanılmıştır. Böylece doğrulama ka
 
 
 
-\## Kaydedilen Proje Çıktıları
+\## Kaydedilen Çıktılar
 
 
 
-Model eğitimi sonucunda oluşan dosyalar `outputs/` klasörü altında tutulmaktadır:
+Proje çıktıları outputs klasörü altında tutulmaktadır:
 
 
 
-```text
+<pre>
 
 outputs/
 
@@ -236,7 +224,7 @@ outputs/
 
 └── tokenizer.pkl
 
-```
+</pre>
 
 
 
@@ -244,15 +232,15 @@ outputs/
 
 |---|---|
 
-| `best\_model.keras` | Eğitim sırasında seçilen en iyi model |
+| best\_model.keras | Eğitim sırasında seçilen en iyi model |
 
-| `resnet\_features.pkl` | ResNet50 ile çıkarılmış görsel özellikler |
+| resnet\_features.pkl | ResNet50 ile çıkarılmış görsel özellikler |
 
-| `tokenizer.pkl` | Caption metinleri üzerinden oluşturulan tokenizer |
+| tokenizer.pkl | Caption metinleri üzerinden oluşturulan tokenizer |
 
 
 
-Bu dosyalar büyük boyutlu olduğu için GitHub’a \*\*Git LFS\*\* kullanılarak yüklenmiştir.
+Bu dosyalar büyük boyutlu olduğu için GitHub reposuna Git LFS kullanılarak eklenmiştir.
 
 
 
@@ -282,7 +270,7 @@ Model başarımı 1000 test görseli üzerinde BLEU metrikleri ile değerlendiri
 
 
 
-BLEU-1 skorunun daha yüksek olması, modelin tekil kelime düzeyinde daha başarılı olduğunu göstermektedir. BLEU-3 ve BLEU-4 değerlerinin daha düşük olması ise modelin daha uzun ve bağlamsal cümle yapılarında zorlandığını göstermektedir.
+BLEU-1 değerinin diğer metriklere göre daha yüksek olması, modelin kelime düzeyinde daha başarılı olduğunu göstermektedir. BLEU-3 ve BLEU-4 skorlarının daha düşük olması ise modelin daha uzun ve bağlamsal cümle yapılarında zorlandığını göstermektedir.
 
 
 
@@ -298,17 +286,7 @@ Model bazı basit ve belirgin sahnelerde genel bağlamı yakalayabilmektedir. An
 
 
 
-Örnek çıktı görselleri `results/` klasörü altında yer almaktadır.
-
-
-
-```text
-
-results/
-
-└── örnek model tahminleri
-
-```
+Örnek model tahminleri results klasörü altında yer almaktadır.
 
 
 
@@ -320,7 +298,7 @@ results/
 
 
 
-```text
+<pre>
 
 deep-learning-image-captioning/
 
@@ -350,7 +328,7 @@ deep-learning-image-captioning/
 
 &#x20;   └── örnek model çıktıları
 
-```
+</pre>
 
 
 
@@ -366,11 +344,11 @@ Gerekli kütüphaneleri yüklemek için:
 
 
 
-```bash
+<pre>
 
 pip install -r requirements.txt
 
-```
+</pre>
 
 
 
@@ -390,8 +368,6 @@ Projeyi baştan çalıştırmak için:
 
 
 
-```text
-
 1\. Notebook dosyasını Colab üzerinde açın.
 
 2\. Google Drive bağlantısını çalıştırın.
@@ -410,15 +386,13 @@ Projeyi baştan çalıştırmak için:
 
 9\. Beam Search ve BLEU değerlendirme hücrelerini çalıştırın.
 
-```
-
 
 
 Modeli yeniden eğitmeden test yapmak için kayıtlı çıktı dosyaları kullanılabilir:
 
 
 
-```text
+<pre>
 
 outputs/best\_model.keras
 
@@ -426,7 +400,7 @@ outputs/resnet\_features.pkl
 
 outputs/tokenizer.pkl
 
-```
+</pre>
 
 
 
@@ -454,7 +428,7 @@ Elde edilen sonuçlar, image captioning probleminin yalnızca nesne tanıma değ
 
 
 
-\*\*Derin Öğrenme Dersi Proje Çalışması\*\*
+<b>Derin Öğrenme Dersi Proje Çalışması</b>
 
 
 
