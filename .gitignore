@@ -1,0 +1,21 @@
+# Dataset
+dataset/
+flickr30k_dataset/
+flickr30k_images/
+*.zip
+
+# Reports / certificates
+report/
+reports/
+*.pdf
+*.docx
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+
+# Logs
+*.log
