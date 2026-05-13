@@ -2,33 +2,19 @@
 
 
 
-<h1>Derin Öğrenme Tabanlı Görsel Açıklama Üretimi</h1>
+\# Derin Öğrenme Tabanlı Görsel Açıklama Üretimi
 
 
 
-<p>
-
-&#x20; <b>Flickr30K veri seti üzerinde ResNet50 özellik çıkarımı ve LSTM tabanlı Image Captioning modeli</b>
-
-</p>
+\*\*Flickr30K veri seti üzerinde ResNet50 özellik çıkarımı ve LSTM tabanlı Image Captioning modeli\*\*
 
 
 
-<p>
-
-&#x20; <b>ResNet50</b> • <b>LSTM</b> • <b>Beam Search</b> • <b>BLEU Değerlendirmesi</b>
-
-</p>
+`ResNet50` · `LSTM` · `Beam Search` · `BLEU Değerlendirmesi`
 
 
-
-<p>
 
 Bu proje kapsamında, görsellerden otomatik açıklama üretebilen derin öğrenme tabanlı bir model geliştirilmiştir.
-
-Görsel özellik çıkarımı için ResNet50, açıklama üretimi için LSTM tabanlı model mimarisi kullanılmıştır.
-
-</p>
 
 
 
@@ -36,17 +22,19 @@ Görsel özellik çıkarımı için ResNet50, açıklama üretimi için LSTM tab
 
 
 
+<br>
+
 
 
 \---
+
+
 
 \## Proje Hakkında
 
 
 
 Bu çalışmada amaç, bir görselin içeriğini analiz ederek bu görsele uygun doğal dilde açıklama üretebilen bir image captioning modeli geliştirmektir.
-
-
 
 Model, Flickr30k veri setindeki görseller ve bu görsellere ait açıklama cümleleri kullanılarak eğitilmiştir. Görsel tarafta ResNet50 ile özellik çıkarımı yapılmış, metin tarafında ise caption verileri temizlenerek tokenizer ile sayısal dizilere dönüştürülmüştür.
 
@@ -232,7 +220,7 @@ Proje çıktıları outputs klasörü altında tutulmaktadır:
 
 
 
-<pre>
+```text
 
 outputs/
 
@@ -241,10 +229,6 @@ outputs/
 ├── resnet\_features.pkl
 
 └── tokenizer.pkl
-
-</pre>
-
-
 
 | Dosya | Açıklama |
 
